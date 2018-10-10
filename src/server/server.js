@@ -1,7 +1,8 @@
 const compression = require('compression')
 const express = require('express')
 const path = require('path')
-
+const mongoose = require('mongoose')
+var router = require('./routes/routes.js')
 const app = express()
 // Gives constant name to long directory home page.
 const appPage = path.join(__dirname, '../../public/index.html')
@@ -19,3 +20,6 @@ app.get('/', function(req, res) {
 
 // Port Setting
 app.listen(3000, () => console.log('Running on Port 3000... Do not forget to run "npm run dev" in another terminal!'))
+mongoose.connect('mongodb://wehellabasic:BrownChicken1@ds121203.mlab.com:21203/hellabasic')
+app.use('/', router)
+module.exports=app
